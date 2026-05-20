@@ -1,0 +1,21 @@
+;; em.mdp
+;define = -DPOSRES_PBC
+
+; Run setup 
+integrator= steep
+emtol= 500
+emstep= 0.002
+nsteps= 10000
+nstxout= 100
+; Neighbor searching
+cutoff-scheme= Verlet
+nstlist= 20
+ns-type= grid
+pbc= xyz
+; Electrostatics
+coulombtype= PME
+pme-order= 4
+fourierspacing= 0.1
+rcoulomb= 1.2
+; VdW
+rvdw= 1.2

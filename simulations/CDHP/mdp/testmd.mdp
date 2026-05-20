@@ -1,0 +1,55 @@
+;define=-DPOSRES_PBC
+
+;; md.mdp
+; Run setup
+integrator= md
+dt= 0.004
+nsteps= 5000000;4000ns
+
+; Output control
+nstxout= 0
+nstvout= 0
+nstfout= 0
+nstlog= 25000
+nstenergy= 25000
+nstxout-compressed= 25000
+compressed-x-grps= System
+
+; Bonds
+constraints= all-bonds
+constraint-algorithm= LINCS
+lincs-order= 4
+; Neighbor searchin
+cutoff-scheme= Verlet
+Nstlist= 20
+ns-type= grid
+pbc= xyz
+
+; Electrostatics
+coulombtype= PME
+pme-order= 4
+fourierspacing= 0.1
+rcoulomb= 1.2
+
+; VdW
+rvdw= 1.2
+
+; T coupling is on
+tcoupl= v-rescale
+tc-grps= Protein Non-Protein
+tau-t= 0.1 0.1
+ref-t= 300 300
+nsttcouple= 10
+
+; Pressure coupling is off
+pcoupl= C-rescale
+pcoupltype= isotropic
+tau_p= 5.0
+ref_p= 1.0
+compressibility= 4.5e-5
+refcoord_scaling=com
+
+; Velocity generation
+gen-vel= yes
+gen-temp= 300
+continuation= no

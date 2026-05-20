@@ -1,0 +1,50 @@
+;; nvt.mdp
+	 
+
+define= -DPOSRES ;-DPOSRES_PBC
+
+; Run setup
+	 
+
+integrator= md
+dt= 0.004; 2 fs
+nsteps= 50000
+
+; Output control
+
+nstxout= 5000
+nstvout= 5000
+nstfout= 5000
+nstlog= 500
+nstenergy= 500
+
+; Bonds
+constraints= all-bonds
+constraint-algorithm= LINCS
+lincs-order= 4
+lincs-iter= 1
+
+; Neighbor searching
+cutoff-scheme= Verlet
+nstlist= 20
+ns-type= grid
+pbc= xyz
+; Electrostatics
+coulombtype= PME
+pme-order= 4
+fourierspacing= 0.1
+rcoulomb= 1.2
+; VdW
+rvdw= 1.2
+; T coupling is on
+tcoupl= v-rescale
+tc-grps= Protein Non-Protein
+tau-t= 0.1 0.1
+ref-t= 300 300
+nsttcouple= 10
+; P coupling is off
+pcoupl= no
+; Velocity generation
+gen-vel= yes
+gen-temp= 300
+continuation= no
